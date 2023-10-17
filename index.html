@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <title>Form Validation</title>
+    <div class="container">
+        <form novalidate>
+            <div id="emailDiv" class="row">
+                <label for="email" class="cell">Email: </label>
+                <input type="email" id="email" name="email" class="cell">
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <div id="countryDiv" class="row">
+                <label for="country" class="cell">Country: </label>
+                <select name="country" id="country" class="cell">
+                    <option selected disabled value="">Please select</option>
+                    <option value="ch">Switzerland</option>
+                    <option value="fr">France</option>
+                    <option value="de">Germany</option>
+                    <option value="nl">The Netherlands</option>
+                </select>
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <div id="zipDiv" class="row">
+                <label for="zip" class="cell">Zip Code: </label>
+                <input type="text" id="zip" name="zip" class="cell">
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <div id="pw" class="row">
+                <label for="pw" class="cell">Password: </label>
+                <input type="password" name="pw" id="pw" class="cell">
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <div id="cfm-pw" class="row">
+                <label for="cfm-pw" class="cell">Confirm Password: </label>
+                <input type="password" name="cfm-pw" id="cfm-pw" class="cell">
+                <span class="error" aria-live="polite"></span>
+            </div>
+
+            <div id="submitBtn" class="row">
+                <button type="submit" class="cell">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
