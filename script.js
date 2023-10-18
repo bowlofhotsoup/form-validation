@@ -9,9 +9,8 @@ country.required = true;
 const zip = document.getElementById('zip');
 zip.required = true;
 
-const pw = document.getElementById('pw');
-pw.required = true;
-pw.pattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+const password = document.getElementById('pw');
+password.required = true;
 
 const cfmPw = document.getElementById('cfm-pw');
 cfmPw.required = true;
@@ -45,14 +44,13 @@ email.addEventListener('blur', (event) => {
 
 // 2: Country
 function validateCountryField(country) {
-  // Get the value of the country field
   const countryVal = country.value;
-  const optionVal = 'ch' || 'fr' || 'de' || 'nl';
+  const countryOptions = /ch|fr|de|nl/;
 
   // Check if the country field has a next element sibling
   if (country.nextElementSibling) {
     // Check if the country is selected
-    if (!countryVal.match(optionVal)) {
+    if (!countryVal.match(countryOptions)) {
       // Display an error message
       const errorMessage = 'Please select a country';
       country.nextElementSibling.textContent = errorMessage;
@@ -99,6 +97,7 @@ function validateZipField(zip) {
 
   // Get the value of the zip code field
   const zipVal = zip.value;
+  console.log('zipVal:', zipVal);
 
   // Check if the zip field has a next element sibling
   if (zip.nextElementSibling) {
@@ -122,46 +121,50 @@ zip.addEventListener('blur', (event) => {
 });
 
 // 4: PW
-function validatePwField(pw) {
+function validatePwField(password) {
   // Get the value of the pw field
-  const pwVal = pw.value;
+  const pwVal = password.value;
+  console.log('pwVal:', pwVal);
   const pwFormat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
   // Check if the pw field has a next element sibling
-  if (pw.nextElementSibling) {
+  if (password.nextElementSibling) {
     // Check if the pw is valid
     if (!pwVal.match(pwFormat)) {
       // Display an error message
-      const errorMessage = 'Entered password needs to be at least 6 characters long and contain at least one number and one special character.';
-      pw.nextElementSibling.textContent = errorMessage;
-      pw.classList.add('invalid');
+      const errorMessage = 'Password needs to be at least 6 characters long and contain at least one number and one special character';
+      password.nextElementSibling.textContent = errorMessage;
+      password.classList.add('invalid');
     } else {
+      console.log('Password is valid');
       // Remove the error message
-      pw.nextElementSibling.textContent = '';
-      pw.classList.remove('invalid');
+      password.nextElementSibling.textContent = '';
+      password.classList.remove('invalid');
     }
   }
 }
 
-pw.addEventListener('blur', (event) => {
+password.addEventListener('blur', (event) => {
   // Validate the input field
-  validatePwField(pw);
+  validatePwField(password);
 });
 
 // 5. Confirm PW
 function validateCfmPwField(cfmPw) {
   // Get the value of the cfmPw field
   const cfmPwVal = cfmPw.value;
+  console.log('cfmPwVal:', cfmPwVal);
 
   // Check if the cfmPw field has a next element sibling
   if (cfmPw.nextElementSibling) {
     // Check if the cfmPw is valid
-    if (!cfmPwVal.match(pw.value)) {
+    if (!cfmPwVal.match(password.value)) {
       // Display an error message
       const errorMessage = 'Passwords must match';
       cfmPw.nextElementSibling.textContent = errorMessage;
       cfmPw.classList.add('invalid');
     } else {
+      console.log('passwords are a match');
       // Remove the error message
       cfmPw.nextElementSibling.textContent = '';
       cfmPw.classList.remove('invalid');
